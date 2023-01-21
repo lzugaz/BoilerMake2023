@@ -95,7 +95,8 @@ def solve():
 
 
 if __name__ == "__main__":
-    sudoku_file = open("sudoku.txt", 'r')  # making a file
+    sudoku_file_name = "sudoku.txt"             # name of a file
+    sudoku_file = open(sudoku_file_name, 'r')   # opening a file
     sudoku = []  # array in which the numbers of Sudoku are to be saved
 
     # The index is a number, element is information of row and col
