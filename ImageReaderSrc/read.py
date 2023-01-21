@@ -1,12 +1,13 @@
 import sys
 
-
-import cv2
+import os
+import cv2  
 from imutils import contours
 import numpy as np
+import pytesseract
 
 # Load image, grayscale, and adaptive threshold
-image = cv2.imread('1.png')
+image = cv2.imread('sodoku.png')
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV,57,5)
 
@@ -42,6 +43,11 @@ for (i, c) in enumerate(cnts, 1):
             row = []
 
 # Iterate through each box
+
+
+#make a string to append numbers too
+numberstosend = ""
+imagesavecounter = 1
 for row in sudoku_rows:
     for c in row:
         #creates 2d image array of 0s
@@ -53,7 +59,9 @@ for row in sudoku_rows:
         result[mask==0] = 255
         #Read number from result image of individual box
         cv2.imshow('result', result)
-
+        
+        #img = cv2.imread(result)
+        numberstosend =pytesseract.image_to_string(img)
         cv2.waitKey(175)
 
 
