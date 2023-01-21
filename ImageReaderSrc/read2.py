@@ -361,10 +361,20 @@ def sudoku_matrix(num):
     grid = np.transpose(grid)
     print (grid[i][j])
     return grid
+
+
 if __name__ == "__main__":   
     case = "False" # If transformation is required set True 
-    image = cv2.imread("sodoku.png",0)
-    height, width, channels = img.shape
+    image = cv2.imread("sams_sudoku.png")
+
+    print (image)
+    #dimensions = image.shape
+
+    height = image.shape[0]
+    width = image.shape[1]
+    channels = image.shape[2]
+    
+    #height, width, channels = image.shape
     print (height, width, channels)
     th3,warped1,warped = preprocess(image,case)
     warped2 = warped1.copy()
