@@ -25,7 +25,7 @@ def check():
     # sudoku is uncompleted because of insufficient information
     elif s < completed_number:
         write_completed_sudoku()
-        answer_file = open("answer.txt", 'a')
+        answer_file = open("answer.txt", 'a')   # add commnet
         answer_file.write("No error but not enough information\n")
 
 
