@@ -2,13 +2,16 @@
 import imutils
 import numpy as np
 import cv2
-from transform import four_point_transform
+#from transform import four_point_transform
 from PIL import Image
 import pytesseract
 import math
+from skimage import io
+from skimage import filters
 from skimage.filters import threshold_local
 
 # =============== For Transformation ==============
+
 def order_points(pts):
     """initialzie a list of coordinates that will be ordered
     such that the first entry in the list is the top-left,
@@ -73,6 +76,7 @@ def four_point_transform(image, pts):
     return warped
 
 ############## To show image ##############
+
 def show_image(img,title):
     cv2.imshow(title, img) 
     cv2.waitKey(0) 
@@ -357,5 +361,14 @@ def sudoku_matrix(num):
     grid = np.transpose(grid)
     print (grid[i][j])
     return grid
-    
-
+if __name__ == "__main__":   
+    case = "False" # If transformation is required set True 
+    image = cv2.imread("sodoku.png",0)
+    height, width, channels = img.shape
+    print (height, width, channels)
+    th3,warped1,warped = preprocess(image,case)
+    warped2 = warped1.copy()
+    img = grids(warped,warped2)
+    c2,bm,cnts = grid_points(img,warped2)
+    c2,num,cx,cy = get_digit(c2,bm,warped1,cnts)
+    grid = sudoku_matrix(num)
