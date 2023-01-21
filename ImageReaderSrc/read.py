@@ -44,13 +44,21 @@ for (i, c) in enumerate(cnts, 1):
 # Iterate through each box
 for row in sudoku_rows:
     for c in row:
+        #creates 2d image array of 0s
         mask = np.zeros(image.shape, dtype=np.uint8)
+        #Draws boxes onto 0 array
         cv2.drawContours(mask, [c], -1, (255,255,255), -1)
+        #looks at individual box
         result = cv2.bitwise_and(image, mask)
         result[mask==0] = 255
+        #Read number from result image of individual box
         cv2.imshow('result', result)
+
         cv2.waitKey(175)
 
+
+#Remove below when done
 cv2.imshow('thresh', thresh)
 cv2.imshow('invert', invert)
+#keep key so we can see images
 cv2.waitKey()
