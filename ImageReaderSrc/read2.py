@@ -359,14 +359,18 @@ def sudoku_matrix(num):
             
             c += 1
     grid = np.transpose(grid)
-    print (grid[i][j])
+    print (grid)
     return grid
 
+def send_grid_to_File(grid):
+    x = grid
+    np.savetxt('sudoku_solve/sudoku.txt', x, fmt='%i')
 
 if __name__ == "__main__":   
+    pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract'
     case = "False" # If transformation is required set True 
     image = cv2.imread("sams_sudoku.png")
-
+    #cv2.imshow(image)
     print (image)
     #dimensions = image.shape
 
@@ -382,3 +386,8 @@ if __name__ == "__main__":
     c2,bm,cnts = grid_points(img,warped2)
     c2,num,cx,cy = get_digit(c2,bm,warped1,cnts)
     grid = sudoku_matrix(num)
+    send_grid_to_File(grid)
+
+
+
+  

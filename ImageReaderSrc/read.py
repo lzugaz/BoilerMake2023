@@ -7,7 +7,7 @@ import numpy as np
 import pytesseract
 
 # Load image, grayscale, and adaptive threshold
-image = cv2.imread('sodoku.png')
+image = cv2.imread('sams_sudoku.png')
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV,57,5)
 
@@ -61,9 +61,8 @@ for row in sudoku_rows:
         cv2.imshow('result', result)
         
         #img = cv2.imread(result)
-        numberstosend =pytesseract.image_to_string(img)
+        numberstosend =pytesseract.image_to_string(image)
         cv2.waitKey(175)
-
 
 #Remove below when done
 cv2.imshow('thresh', thresh)
