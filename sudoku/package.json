@@ -13,6 +13,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.3",
+    "child_process": "^1.0.2",
     "core-decorators": "^0.20.0",
     "ejs": "^3.1.8",
     "fs": "^0.0.1-security",
@@ -58,5 +59,8 @@
   },
   "presets": [
     "@babel/preset-react"
-  ]
+  ],
+  "browser":{
+    "child_process": false
+  }
 }

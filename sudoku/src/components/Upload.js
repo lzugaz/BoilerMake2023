@@ -35,6 +35,22 @@ class Upload extends Component {
         axios.post("http://localhost:8080/imageupload", formdata,{   
                 headers: { "Content-Type": "multipart/form-data" } 
         })
+
+        // const spawn = require('child_process').spawn;
+
+        // console.log("before");
+        // const result = spawn('python3', ['/Users/jennychen/Desktop/project.nosync/boilerMake/ImageReaderSrc/read2.py']);
+        // console.log("after");
+
+        // result.stdout.on('data', function(data) {
+        //     console.log(data.toString());
+        // });
+
+        // result.stderr.on('data', function(data) {
+        //     console.log(data.toString());
+        // });
+        // const pyodide = window.pyodide;
+        // pyodide.runPython('/Users/jennychen/Desktop/project.nosync/boilerMake/ImageReaderSrc/read2.py');
     }
 
     render() {

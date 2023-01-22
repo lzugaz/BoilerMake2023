@@ -20,13 +20,13 @@ class Result extends Component {
         console.log(final);
         var lines = final.split("\n");;
         this.setState({
-            listItems: lines.map((number) =>
-                <li key={number} style={{
+            listItems: lines.map((number, index) =>
+                <li key={index} style={{
                 color: "#FFFFFF",
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'}}>{number}</li>
-            )
+            ),
         });
     }
 

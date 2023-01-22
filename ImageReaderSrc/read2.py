@@ -9,7 +9,8 @@ import math
 from skimage import io
 from skimage import filters
 from skimage.filters import threshold_local
-
+import sudoku_solve
+from sudoku_solve.sudoku_solve import fin
 # =============== For Transformation ==============
 
 def order_points(pts):
@@ -364,29 +365,33 @@ def sudoku_matrix(num):
 
 def send_grid_to_File(grid):
     x = grid
-    np.savetxt('sudoku_solve/sudoku.txt', x, fmt='%i')
+    np.savetxt('/Users/jennychen/Desktop/project.nosync/boilerMake/ImageReaderSrc/sudoku_solve/sudoku.txt', x, fmt='%i')
+stay = 1
+while stay==1:
+    if __name__ == "__main__":   
+        print ("hello")
+        pytesseract.pytesseract.tesseract_cmd = '/usr/local/bin/tesseract'
+        case = "False" # If transformation is required set True 
+        image = cv2.imread("../public/uploads/image.png")
+        #cv2.imshow(image)
+        print (image)
+        #dimensions = image.shape
 
-if __name__ == "__main__":   
-    pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract'
-    case = "False" # If transformation is required set True 
-    image = cv2.imread("sams_sudoku.png")
-    #cv2.imshow(image)
-    print (image)
-    #dimensions = image.shape
-
-    height = image.shape[0]
-    width = image.shape[1]
-    channels = image.shape[2]
+        height = image.shape[0]
+        width = image.shape[1]
+        channels = image.shape[2]
+        
+        #height, width, channels = image.shape
+        print (height, width, channels)
+        th3,warped1,warped = preprocess(image,case)
+        warped2 = warped1.copy()
+        img = grids(warped,warped2)
+        c2,bm,cnts = grid_points(img,warped2)
+        c2,num,cx,cy = get_digit(c2,bm,warped1,cnts)
+        grid = sudoku_matrix(num)
+        send_grid_to_File(grid)
+        fin()
     
-    #height, width, channels = image.shape
-    print (height, width, channels)
-    th3,warped1,warped = preprocess(image,case)
-    warped2 = warped1.copy()
-    img = grids(warped,warped2)
-    c2,bm,cnts = grid_points(img,warped2)
-    c2,num,cx,cy = get_digit(c2,bm,warped1,cnts)
-    grid = sudoku_matrix(num)
-    send_grid_to_File(grid)
 
 
 
